@@ -1,91 +1,72 @@
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-
-function AnimatedStat({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const count = useMotionValue(0)
-  const rounded = useTransform(count, (v) => Math.round(v))
-
-  useEffect(() => {
-    const controls = animate(count, value, { duration: 2.5, ease: 'easeOut' })
-    return controls.stop
-  }, [count, value])
-
-  useEffect(() => {
-    const unsubscribe = rounded.on('change', (v) => {
-      if (ref.current) ref.current.textContent = `${v.toLocaleString('de-DE')}${suffix}`
-    })
-    return unsubscribe
-  }, [rounded, suffix])
-
-  return <span ref={ref}>0{suffix}</span>
-}
-
-const stats = [
-  { value: 500, suffix: '+', label: 'Installationen', sublabel: 'in der Region Karlsruhe' },
-  { value: 98, suffix: '%', label: 'Kundenzufriedenheit', sublabel: 'basierend auf 200+ Bewertungen' },
-  { value: 15, suffix: '+', label: 'Jahre Erfahrung', sublabel: 'in der Solarbranche' },
-  { value: 12, suffix: ' GWh', label: 'Solarstrom erzeugt', sublabel: 'seit Gründung' },
-]
+import { motion } from 'framer-motion'
 
 export default function About() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        {/* Section header */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-20">
+    <section className="relative py-24 lg:py-36 bg-cream overflow-hidden">
+      {/* Decorative section number */}
+      <div className="section-number top-0 left-[-2%]">01</div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
+        {/* Asymmetric two-column layout */}
+        <div className="grid lg:grid-cols-[1.4fr,1fr] gap-12 lg:gap-24">
+          {/* Left — large editorial text */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-celaris-green">
-              Über Celaris
-            </span>
-            <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-tight text-dark-900 leading-[1.15]">
-              Ihr lokaler Partner für die Energiewende
+            <span className="tag tag-accent mb-6">Über Celaris</span>
+            <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-extrabold tracking-[-0.03em] leading-[1.05] text-ink">
+              Ihr lokaler Partner
+              <br />
+              <span className="text-accent">für die Energiewende.</span>
             </h2>
+            <div className="mt-8 space-y-5 text-stone-500 text-[16px] leading-[1.8]">
+              <p>
+                Als Karlsruher Fachbetrieb kennen wir die regionalen Gegebenheiten — von der
+                Dachlandschaft der Fächerstadt bis zu den spezifischen Fördermöglichkeiten in
+                Baden-Württemberg.
+              </p>
+              <p>
+                Unser Team aus Ingenieuren und Energieberatern begleitet Sie von der ersten
+                Beratung bis zur schlüsselfertigen Installation. Dabei setzen wir ausschließlich
+                auf Premium-Komponenten namhafter Hersteller.
+              </p>
+            </div>
           </motion.div>
 
+          {/* Right — stat cards, stacked vertically */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:pt-8"
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
+            className="flex flex-col gap-4 lg:pt-8"
           >
-            <p className="text-light-500 text-[16px] leading-[1.75]">
-              Als Karlsruher Fachbetrieb kennen wir die regionalen Gegebenheiten — von der
-              Dachlandschaft der Fächerstadt bis zu den spezifischen Fördermöglichkeiten in
-              Baden-Württemberg. Unser Team aus Ingenieuren und Energieberatern begleitet
-              Sie von der ersten Beratung bis zur schlüsselfertigen Installation.
-            </p>
+            {[
+              { num: '500+', label: 'Installierte Anlagen', sub: 'Region Karlsruhe' },
+              { num: '98%', label: 'Kundenzufriedenheit', sub: '200+ Bewertungen' },
+              { num: '12 GWh', label: 'Solarstrom erzeugt', sub: 'Seit Gründung' },
+            ].map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                className="group relative rounded-2xl border border-stone-100 bg-white/60 backdrop-blur-sm p-6 hover:border-accent/20 hover:bg-accent/[0.02] transition-all duration-500"
+              >
+                <div className="flex items-baseline justify-between">
+                  <p className="font-display text-3xl font-extrabold tracking-tight text-ink">{s.num}</p>
+                  <span className="text-[10px] uppercase tracking-[0.15em] text-stone-400 font-medium">{s.sub}</span>
+                </div>
+                <p className="mt-1 text-sm text-stone-500 font-medium">{s.label}</p>
+                {/* Accent line */}
+                <div className="absolute bottom-0 left-6 right-6 h-px bg-accent/0 group-hover:bg-accent/40 transition-all duration-500" />
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
-
-        {/* Stats grid — inspired by Tesla/SunPower */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative rounded-2xl border border-light-100 bg-light-50/50 p-6 lg:p-8 group hover:border-celaris-green/20 hover:bg-celaris-green/[0.02] transition-all duration-500"
-            >
-              <p className="font-display text-3xl lg:text-4xl font-bold text-dark-900">
-                <AnimatedStat value={stat.value} suffix={stat.suffix} />
-              </p>
-              <p className="mt-2 font-display text-sm font-semibold text-dark-700">
-                {stat.label}
-              </p>
-              <p className="mt-1 text-[12px] text-light-400">
-                {stat.sublabel}
-              </p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

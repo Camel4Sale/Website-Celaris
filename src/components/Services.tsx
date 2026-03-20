@@ -6,120 +6,103 @@ const services = [
   {
     icon: Sun,
     title: 'Photovoltaik',
-    description: 'Maßgeschneiderte Solaranlagen mit Premium-Modulen für maximalen Ertrag auf Ihrem Dach.',
-    features: ['Individuelle Planung', 'Premium-Module', 'Ertragsgarantie'],
-    color: 'from-amber-400/10 to-orange-400/10',
-    iconColor: 'text-amber-500',
-    span: 'lg:col-span-2 lg:row-span-2',
-    large: true,
+    desc: 'Maßgeschneiderte Solaranlagen mit Premium-Modulen für maximalen Ertrag.',
+    tags: ['Individuelle Planung', 'Ertragsgarantie', 'Premium-Module'],
+    featured: true,
   },
   {
     icon: Zap,
     title: 'Stromspeicher',
-    description: 'Speichern Sie Ihren Solarstrom und steigern Sie Ihren Eigenverbrauch auf bis zu 80%.',
-    features: ['Notstromfähig', 'Modular erweiterbar'],
-    color: 'from-celaris-green/10 to-emerald-400/10',
-    iconColor: 'text-celaris-green',
-    span: '',
-    large: false,
+    desc: 'Eigenverbrauch bis 80%. Notstromfähig und modular erweiterbar.',
+    tags: ['Bis 80% Autarkie', 'Notstrom'],
+    featured: false,
   },
   {
     icon: Plug,
     title: 'Wallbox',
-    description: 'E-Auto laden mit eigenem Solarstrom — intelligent und kostengünstig.',
-    features: ['Bis 22 kW', 'App-Steuerung'],
-    color: 'from-celaris-cyan/10 to-sky-400/10',
-    iconColor: 'text-celaris-cyan',
-    span: '',
-    large: false,
+    desc: 'E-Auto laden mit eigenem Solarstrom — intelligent und kostengünstig.',
+    tags: ['Bis 22 kW', 'App-Steuerung'],
+    featured: false,
   },
   {
     icon: Wrench,
-    title: 'Wartung & Service',
-    description: 'Professionelle Wartung und Monitoring für optimale Leistung über Jahrzehnte.',
-    features: ['Fernüberwachung', '24/7 Support'],
-    color: 'from-violet-400/10 to-purple-400/10',
-    iconColor: 'text-violet-500',
-    span: 'lg:col-span-2',
-    large: false,
+    title: 'Wartung',
+    desc: 'Professionelle Wartung und 24/7-Monitoring für optimale Leistung.',
+    tags: ['Fernüberwachung', '24/7 Support'],
+    featured: false,
   },
 ]
 
 export default function Services() {
   return (
-    <section className="py-20 lg:py-28 bg-light-50">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        {/* Header */}
+    <section className="relative py-24 lg:py-36 bg-ink overflow-hidden">
+      <div className="absolute inset-0 dot-grid-light" />
+      <div className="section-number bottom-[-5%] right-[-2%] [-webkit-text-stroke:1px_rgba(0,230,118,0.05)]">02</div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
+        {/* Header — left-aligned, editorial */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+          className="max-w-xl mb-16"
         >
-          <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-celaris-green">
-            Leistungen
-          </span>
-          <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-tight text-dark-900">
-            Alles aus einer Hand
+          <span className="tag tag-accent mb-6">Leistungen</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-extrabold tracking-[-0.03em] leading-[1.1] text-white">
+            Alles aus einer Hand.
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-light-500 text-[16px]">
-            Von der Planung bis zur Wartung — wir begleiten Sie auf dem gesamten Weg
-            zu Ihrer eigenen Solaranlage.
+          <p className="mt-4 text-white/40 text-[16px] leading-relaxed">
+            Von der Planung bis zur Wartung — wir begleiten Sie auf dem gesamten Weg zu Ihrer eigenen Solaranlage.
           </p>
         </motion.div>
 
-        {/* Bento grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-5">
-          {services.map((service, i) => (
+        {/* Service grid — asymmetric bento */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {services.map((s, i) => (
             <motion.div
-              key={service.title}
+              key={s.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`group relative rounded-2xl bg-white border border-light-100 overflow-hidden hover:border-celaris-green/20 hover:shadow-lg hover:shadow-celaris-green/[0.04] transition-all duration-500 ${service.span}`}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className={`group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-accent/20 hover:bg-accent/[0.02] ${
+                s.featured ? 'md:col-span-2 lg:col-span-1 lg:row-span-2' : ''
+              }`}
             >
-              {/* Background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-              <div className={`relative ${service.large ? 'p-8 lg:p-10' : 'p-6 lg:p-8'}`}>
+              <div className={`p-7 ${s.featured ? 'lg:p-9' : ''} flex flex-col h-full`}>
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${service.color} ${service.large ? 'h-14 w-14' : 'h-11 w-11'} mb-5`}>
-                  <service.icon className={`${service.iconColor} ${service.large ? 'h-7 w-7' : 'h-5 w-5'}`} />
+                <div className="w-10 h-10 rounded-xl bg-accent/[0.08] flex items-center justify-center mb-5">
+                  <s.icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
 
-                {/* Title */}
-                <h3 className={`font-display font-bold text-dark-900 mb-3 ${service.large ? 'text-2xl lg:text-3xl' : 'text-lg'}`}>
-                  {service.title}
+                <h3 className={`font-display font-bold text-white mb-3 ${s.featured ? 'text-2xl' : 'text-lg'}`}>
+                  {s.title}
                 </h3>
-
-                {/* Description */}
-                <p className={`text-light-500 leading-relaxed mb-5 ${service.large ? 'text-[16px] max-w-md' : 'text-sm'}`}>
-                  {service.description}
+                <p className="text-white/40 text-sm leading-relaxed mb-5 flex-1">
+                  {s.desc}
                 </p>
 
-                {/* Feature tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {service.features.map((f) => (
-                    <span
-                      key={f}
-                      className="inline-flex items-center rounded-full bg-light-50 border border-light-100 px-3 py-1 text-[11px] font-medium text-light-600"
-                    >
-                      {f}
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {s.tags.map((t) => (
+                    <span key={t} className="text-[10px] font-medium uppercase tracking-wider text-white/30 border border-white/[0.06] rounded-full px-3 py-1">
+                      {t}
                     </span>
                   ))}
                 </div>
 
-                {/* Link */}
                 <Link
                   to="/kontakt"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-celaris-green hover:text-celaris-green-dark transition-colors"
+                  className="inline-flex items-center gap-1.5 text-accent text-[13px] font-semibold hover:text-accent-dim transition-colors"
                 >
-                  Mehr erfahren
-                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  Anfragen
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
+
+              {/* Bottom accent line on hover */}
+              <div className="absolute bottom-0 inset-x-0 h-px bg-accent/0 group-hover:bg-accent/50 transition-all duration-500" />
             </motion.div>
           ))}
         </div>

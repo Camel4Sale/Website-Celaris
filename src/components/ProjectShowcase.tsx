@@ -1,103 +1,66 @@
 import { motion } from 'framer-motion'
-import { MapPin, Zap, ArrowRight } from 'lucide-react'
+import { MapPin, ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const projects = [
-  {
-    title: 'Einfamilienhaus Durlach',
-    location: 'Karlsruhe-Durlach',
-    system: '10.8 kWp + 10 kWh BYD Speicher',
-    savings: '1.920 €/Jahr',
-    co2: '4.2t CO₂/Jahr',
-    color: 'from-celaris-green/5 to-celaris-cyan/5',
-  },
-  {
-    title: 'Doppelhaushälfte Ettlingen',
-    location: 'Ettlingen',
-    system: '8.6 kWp + Wallbox 11kW',
-    savings: '1.450 €/Jahr',
-    co2: '3.4t CO₂/Jahr',
-    color: 'from-celaris-cyan/5 to-sky-400/5',
-  },
-  {
-    title: 'Gewerbe Bruchsal',
-    location: 'Bruchsal',
-    system: '32 kWp + 30 kWh Speicher',
-    savings: '6.800 €/Jahr',
-    co2: '12.8t CO₂/Jahr',
-    color: 'from-amber-400/5 to-celaris-green/5',
-  },
+  { title: 'EFH Durlach', location: 'Karlsruhe-Durlach', system: '10.8 kWp + 10 kWh Speicher', saving: '1.920 €/J.', co2: '4.2t CO₂' },
+  { title: 'DHH Ettlingen', location: 'Ettlingen', system: '8.6 kWp + Wallbox 11 kW', saving: '1.450 €/J.', co2: '3.4t CO₂' },
+  { title: 'Gewerbe Bruchsal', location: 'Bruchsal', system: '32 kWp + 30 kWh Speicher', saving: '6.800 €/J.', co2: '12.8t CO₂' },
 ]
 
 export default function ProjectShowcase() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-5 lg:px-8">
-        {/* Header */}
+    <section className="py-24 lg:py-36 bg-ink relative overflow-hidden">
+      <div className="absolute inset-0 topo-pattern" />
+      <div className="section-number bottom-[-5%] left-[5%] [-webkit-text-stroke:1px_rgba(0,230,118,0.04)]">05</div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-14"
         >
           <div>
-            <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-celaris-green">
-              Referenzen
-            </span>
-            <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-tight text-dark-900">
-              Unsere Projekte
+            <span className="tag tag-accent mb-6">Referenzen</span>
+            <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-extrabold tracking-[-0.03em] leading-[1.1] text-white">
+              Unsere Projekte.
             </h2>
           </div>
-          <Link
-            to="/kontakt"
-            className="group inline-flex items-center gap-2 text-[13px] font-semibold text-celaris-green hover:text-celaris-green-dark transition-colors"
-          >
-            Alle Referenzen ansehen
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          <Link to="/kontakt" className="group inline-flex items-center gap-1.5 text-accent text-[13px] font-semibold">
+            Alle ansehen <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </motion.div>
 
-        {/* Project cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {projects.map((project, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {projects.map((p, i) => (
             <motion.div
-              key={project.title}
+              key={p.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group rounded-2xl border border-light-100 overflow-hidden hover:shadow-lg hover:shadow-black/[0.03] hover:border-celaris-green/15 transition-all duration-500"
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden hover:border-accent/20 transition-all duration-500"
             >
-              {/* Image placeholder */}
-              <div className={`aspect-[4/3] bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}>
-                <div className="absolute inset-0 grid-pattern opacity-10" />
-                <div className="relative">
-                  <Zap className="h-16 w-16 text-celaris-green/15" />
-                </div>
+              {/* Placeholder image area */}
+              <div className="aspect-[16/10] bg-gradient-to-br from-accent/[0.04] to-transparent flex items-center justify-center">
+                <span className="font-display text-6xl font-extrabold text-white/[0.03]">PV</span>
               </div>
-
-              {/* Content */}
               <div className="p-6">
-                <div className="flex items-center gap-1.5 text-[12px] text-light-400 mb-2">
-                  <MapPin className="h-3 w-3" />
-                  {project.location}
-                </div>
-                <h3 className="font-display text-lg font-semibold text-dark-900 mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-[13px] text-light-500 mb-4">{project.system}</p>
-
-                {/* Metrics */}
-                <div className="flex items-center gap-4 pt-4 border-t border-light-100">
+                <p className="flex items-center gap-1.5 text-[11px] text-white/30 uppercase tracking-wider font-medium mb-2">
+                  <MapPin className="h-3 w-3" /> {p.location}
+                </p>
+                <h3 className="font-display text-lg font-bold text-white mb-1">{p.title}</h3>
+                <p className="text-[13px] text-white/40 mb-5">{p.system}</p>
+                <div className="flex gap-6 pt-4 border-t border-white/[0.06]">
                   <div>
-                    <p className="font-display text-sm font-bold text-celaris-green">{project.savings}</p>
-                    <p className="text-[10px] text-light-400">Ersparnis</p>
+                    <p className="font-display text-sm font-bold text-accent">{p.saving}</p>
+                    <p className="text-[9px] text-white/30 uppercase tracking-wider">Ersparnis</p>
                   </div>
-                  <div className="w-px h-8 bg-light-100" />
                   <div>
-                    <p className="font-display text-sm font-bold text-dark-900">{project.co2}</p>
-                    <p className="text-[10px] text-light-400">CO₂ eingespart</p>
+                    <p className="font-display text-sm font-bold text-white">{p.co2}</p>
+                    <p className="text-[9px] text-white/30 uppercase tracking-wider">Eingespart</p>
                   </div>
                 </div>
               </div>

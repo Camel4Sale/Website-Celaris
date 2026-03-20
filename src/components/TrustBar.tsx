@@ -1,47 +1,34 @@
 import { motion } from 'framer-motion'
 
-const partners = [
-  'SolarEdge',
-  'Enphase',
-  'Q CELLS',
-  'BYD',
-  'Fronius',
-  'SMA',
-  'Meyer Burger',
-  'Huawei',
-]
+const partners = ['SolarEdge', 'Enphase', 'Q CELLS', 'BYD', 'Fronius', 'SMA', 'Meyer Burger', 'Huawei']
 
 export default function TrustBar() {
   return (
-    <section className="relative bg-white py-12 border-b border-light-100">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section className="py-10 bg-cream border-b border-stone-100">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center"
+          transition={{ duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-light-400 mb-8">
-            Wir arbeiten mit den führenden Herstellern
+          <p className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-semibold shrink-0 whitespace-nowrap">
+            Premium-Partner
           </p>
-
           <div className="w-full overflow-hidden">
             <motion.div
               animate={{ x: ['0%', '-50%'] }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              className="flex items-center gap-16 w-max"
+              transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+              className="flex items-center gap-14 w-max"
             >
-              {/* Double the items for seamless loop */}
-              {[...partners, ...partners].map((partner, i) => (
-                <div
-                  key={`${partner}-${i}`}
-                  className="flex-shrink-0 flex items-center justify-center h-10"
+              {[...partners, ...partners].map((p, i) => (
+                <span
+                  key={`${p}-${i}`}
+                  className="font-display text-sm font-semibold text-stone-300 whitespace-nowrap select-none tracking-wide"
                 >
-                  <span className="font-display text-base font-semibold text-light-300 tracking-wide whitespace-nowrap select-none">
-                    {partner}
-                  </span>
-                </div>
+                  {p}
+                </span>
               ))}
             </motion.div>
           </div>

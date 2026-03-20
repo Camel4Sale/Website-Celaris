@@ -1,121 +1,83 @@
 import { motion } from 'framer-motion'
-import { MessageSquare, ClipboardList, Wrench, Headphones, CheckCircle } from 'lucide-react'
+import { MessageSquare, ClipboardList, Wrench, Headphones } from 'lucide-react'
 
 const steps = [
-  {
-    number: '01',
-    icon: MessageSquare,
-    title: 'Beratung',
-    description: 'Kostenlose Erstberatung und individuelle Analyse Ihres Energiebedarfs und Dachs.',
-    duration: '30 Min.',
-  },
-  {
-    number: '02',
-    icon: ClipboardList,
-    title: 'Planung',
-    description: 'Detaillierte Anlagenplanung mit 3D-Simulation und verbindlichem Festpreis-Angebot.',
-    duration: '3-5 Tage',
-  },
-  {
-    number: '03',
-    icon: Wrench,
-    title: 'Installation',
-    description: 'Professionelle Montage durch unser eigenes, zertifiziertes Installationsteam.',
-    duration: '1-3 Tage',
-  },
-  {
-    number: '04',
-    icon: Headphones,
-    title: 'Betreuung',
-    description: 'Lebenslanger Support, Monitoring und optionaler Wartungsvertrag.',
-    duration: 'Dauerhaft',
-  },
+  { icon: MessageSquare, num: '01', title: 'Beratung', time: '30 Min.', desc: 'Kostenlose Erstberatung und individuelle Analyse Ihres Energiebedarfs.' },
+  { icon: ClipboardList, num: '02', title: 'Planung', time: '3–5 Tage', desc: '3D-Simulation, Ertragsberechnung und verbindliches Festpreis-Angebot.' },
+  { icon: Wrench, num: '03', title: 'Installation', time: '1–3 Tage', desc: 'Professionelle Montage durch unser eigenes, zertifiziertes Team.' },
+  { icon: Headphones, num: '04', title: 'Betreuung', time: 'Dauerhaft', desc: 'Lebenslanger Support, 24/7-Monitoring und optionaler Wartungsvertrag.' },
 ]
 
 export default function Process() {
   return (
-    <section id="prozess" className="py-20 lg:py-28 bg-white">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        {/* Header */}
+    <section id="prozess" className="relative py-24 lg:py-36 bg-cream overflow-hidden">
+      <div className="absolute inset-0 dot-grid" />
+      <div className="section-number top-[-5%] right-[5%]">03</div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 lg:mb-20"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+          className="max-w-xl mb-16 lg:mb-20"
         >
-          <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-celaris-green">
-            So funktioniert&apos;s
-          </span>
-          <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-tight text-dark-900">
-            In 4 Schritten zur Solaranlage
+          <span className="tag tag-ink mb-6">Prozess</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-extrabold tracking-[-0.03em] leading-[1.1] text-ink">
+            In 4 Schritten zur
+            <br />Solaranlage.
           </h2>
-          <p className="mt-4 max-w-xl mx-auto text-light-500 text-[16px]">
-            Vom ersten Gespräch bis zur Einspeisung — transparent, planbar und stressfrei.
-          </p>
         </motion.div>
 
-        {/* Steps — horizontal timeline on desktop, vertical on mobile */}
-        <div className="relative">
-          {/* Desktop connecting line */}
-          <div className="hidden lg:block absolute top-[52px] left-[calc(12.5%+30px)] right-[calc(12.5%+30px)] h-[2px]">
-            <div className="h-full bg-gradient-to-r from-celaris-green via-celaris-cyan to-celaris-green opacity-20 rounded-full" />
-          </div>
+        {/* Timeline — horizontal on desktop, vertical mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-0">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.num}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="relative group"
+            >
+              {/* Connector line */}
+              {i < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-[20px] left-[calc(50%+24px)] right-0 h-px bg-stone-200 group-hover:bg-accent/30 transition-colors duration-500" />
+              )}
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="relative"
-              >
-                {/* Mobile vertical connector */}
-                {i < steps.length - 1 && (
-                  <div className="lg:hidden absolute top-[104px] left-[30px] w-[2px] h-[calc(100%-56px)] bg-gradient-to-b from-celaris-green/20 to-transparent" />
-                )}
-
-                <div className="flex lg:flex-col items-start lg:items-center gap-5 lg:gap-0 lg:text-center">
-                  {/* Number circle */}
-                  <div className="relative z-10 flex-shrink-0">
-                    <div className="relative flex h-[60px] w-[60px] items-center justify-center">
-                      {/* Gradient ring */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-celaris-green to-celaris-cyan p-[2px]">
-                        <div className="h-full w-full rounded-full bg-white" />
-                      </div>
-                      <span className="relative font-display text-lg font-bold gradient-text">
-                        {step.number}
-                      </span>
+              <div className="flex lg:flex-col items-start gap-5 lg:gap-0 py-6 lg:py-0 lg:pr-8">
+                {/* Number + icon */}
+                <div className="flex items-center gap-3 lg:mb-6">
+                  <div className="relative">
+                    <div className="w-12 h-12 rounded-full border-2 border-stone-200 flex items-center justify-center group-hover:border-accent transition-colors duration-500">
+                      <span className="font-display text-sm font-bold text-ink">{s.num}</span>
                     </div>
-                    {/* Completed checkmark */}
-                    {i === 0 && (
-                      <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-celaris-green flex items-center justify-center">
-                        <CheckCircle className="h-3 w-3 text-white" />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="lg:mt-6 flex-1">
-                    <div className="flex lg:justify-center items-center gap-2 mb-2">
-                      <step.icon className="h-4 w-4 text-celaris-green" />
-                      <span className="text-[11px] font-medium text-celaris-green bg-celaris-green/[0.06] px-2 py-0.5 rounded-full">
-                        {step.duration}
-                      </span>
+                    {/* Pulse dot */}
+                    <div className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-accent/0 group-hover:bg-accent transition-all duration-500 flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-ink/0 group-hover:bg-ink transition-all duration-500" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold text-dark-900 mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-light-500 leading-relaxed max-w-[260px] lg:mx-auto">
-                      {step.description}
-                    </p>
                   </div>
+                  <s.icon className="w-4 h-4 text-stone-400 lg:hidden" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                {/* Text */}
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="font-display text-lg font-bold text-ink">{s.title}</h3>
+                    <span className="text-[10px] font-semibold text-accent bg-accent/[0.08] px-2 py-0.5 rounded-full">
+                      {s.time}
+                    </span>
+                  </div>
+                  <p className="text-sm text-stone-500 leading-relaxed max-w-[280px]">{s.desc}</p>
+                </div>
+              </div>
+
+              {/* Mobile divider */}
+              {i < steps.length - 1 && (
+                <div className="lg:hidden h-px bg-stone-100 ml-6" />
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
