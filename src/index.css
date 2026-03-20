@@ -1,32 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-celaris-green: #2EBF53;
-  --color-celaris-green-light: #7BE495;
-  --color-celaris-green-dark: #1a9e3d;
-  --color-celaris-cyan: #4ECFE0;
-  --color-celaris-cyan-light: #8CE7F3;
-  --color-celaris-cyan-dark: #23B6C7;
-  --color-dark-900: #0a0e17;
-  --color-dark-800: #0f1520;
-  --color-dark-700: #151d2e;
-  --color-dark-600: #1c2740;
-  --color-dark-500: #243352;
-  --color-gray-50: #f8fafc;
-  --color-gray-100: #f1f5f9;
-  --color-gray-200: #e2e8f0;
-  --color-gray-300: #cbd5e1;
-  --color-gray-400: #94a3b8;
-  --color-gray-500: #64748b;
-  --color-gray-600: #475569;
-  --color-gray-700: #334155;
-  --color-gray-800: #1e293b;
+  /* Primary brand – refined from analysis of top solar companies */
+  --color-celaris-green: #22c55e;
+  --color-celaris-green-light: #4ade80;
+  --color-celaris-green-dark: #16a34a;
+  --color-celaris-cyan: #06b6d4;
+  --color-celaris-cyan-light: #67e8f9;
+  --color-celaris-cyan-dark: #0891b2;
+  --color-celaris-amber: #f59e0b;
+  --color-celaris-amber-light: #fbbf24;
 
-  --font-display: 'Outfit', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  /* Dark palette — inspired by Tesla/1KOMMA5° */
+  --color-dark-950: #030712;
+  --color-dark-900: #0a0f1a;
+  --color-dark-800: #0f172a;
+  --color-dark-700: #1e293b;
+  --color-dark-600: #334155;
+
+  /* Light palette */
+  --color-light-50: #f8fafc;
+  --color-light-100: #f1f5f9;
+  --color-light-200: #e2e8f0;
+  --color-light-300: #cbd5e1;
+  --color-light-400: #94a3b8;
+  --color-light-500: #64748b;
+  --color-light-600: #475569;
+  --color-light-700: #334155;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 }
 
+/* === Base Reset === */
 * {
   margin: 0;
   padding: 0;
@@ -47,11 +54,11 @@ body {
 }
 
 ::selection {
-  background: rgba(46, 191, 83, 0.2);
-  color: #0a0e17;
+  background: rgba(34, 197, 94, 0.15);
+  color: #030712;
 }
 
-/* Gradient text utility */
+/* === Utility Classes === */
 .gradient-text {
   background: linear-gradient(135deg, var(--color-celaris-green) 0%, var(--color-celaris-cyan) 100%);
   -webkit-background-clip: text;
@@ -59,34 +66,50 @@ body {
   background-clip: text;
 }
 
-/* Glass morphism */
+.gradient-text-amber {
+  background: linear-gradient(135deg, var(--color-celaris-amber) 0%, var(--color-celaris-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism — refined */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* Noise texture overlay */
-.noise::before {
+/* Noise texture — subtle grain */
+.noise::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1;
 }
 
+/* Grid pattern — inspired by SMA/Fronius tech feel */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
 /* Glow effects */
 .glow-green {
-  box-shadow: 0 0 60px rgba(46, 191, 83, 0.15), 0 0 120px rgba(46, 191, 83, 0.05);
+  box-shadow: 0 0 80px rgba(34, 197, 94, 0.12), 0 0 160px rgba(34, 197, 94, 0.04);
 }
 
 .glow-line {
@@ -94,14 +117,66 @@ body {
   height: 1px;
 }
 
-/* Scrollbar */
+/* Gradient border utility */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-celaris-green), var(--color-celaris-cyan));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--color-celaris-green), var(--color-celaris-cyan));
-  border-radius: 3px;
+  border-radius: 10px;
+}
+
+/* Animated gradient border for cards */
+@keyframes border-rotate {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+/* Counter animation */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse for live indicators */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* Smooth section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-light-200) 20%, var(--color-light-200) 80%, transparent 100%);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-celaris-green);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

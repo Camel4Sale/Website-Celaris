@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import StickyMobileCTA from '@/components/StickyMobileCTA'
 
 export default function MainLayout() {
   const { pathname } = useLocation()
@@ -17,6 +18,7 @@ export default function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <StickyMobileCTA />
     </div>
   )
 }

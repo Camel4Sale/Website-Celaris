@@ -4,15 +4,17 @@ import ContactForm from '@/components/ContactForm'
 export default function Kontakt() {
   return (
     <>
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-dark-900 relative noise">
-        <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-celaris-green/5 rounded-full blur-[100px]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <section className="pt-28 pb-16 lg:pt-36 lg:pb-20 bg-dark-950 relative overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-40" />
+        <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-celaris-green/[0.04] rounded-full blur-[100px]" />
+
+        <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
-            <span className="text-celaris-green text-sm font-medium tracking-[0.2em] uppercase font-display">Kontakt</span>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-celaris-green">Kontakt</span>
+            <h1 className="mt-3 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-white tracking-tight">
               Lassen Sie uns <span className="gradient-text">sprechen</span>
             </h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="mt-4 text-light-400 text-[17px] max-w-2xl mx-auto">
               Haben Sie Fragen oder möchten Sie ein unverbindliches Angebot? Wir freuen uns auf Ihre Nachricht.
             </p>
           </motion.div>

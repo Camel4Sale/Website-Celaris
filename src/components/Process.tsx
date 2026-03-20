@@ -1,121 +1,123 @@
-import { motion } from 'framer-motion';
-import { MessageSquare, ClipboardList, Wrench, Headphones } from 'lucide-react';
+import { motion } from 'framer-motion'
+import { MessageSquare, ClipboardList, Wrench, Headphones, CheckCircle } from 'lucide-react'
 
 const steps = [
   {
     number: '01',
     icon: MessageSquare,
     title: 'Beratung',
-    description: 'Kostenlose Erstberatung und Analyse Ihres Energiebedarfs',
+    description: 'Kostenlose Erstberatung und individuelle Analyse Ihres Energiebedarfs und Dachs.',
+    duration: '30 Min.',
   },
   {
     number: '02',
     icon: ClipboardList,
     title: 'Planung',
-    description: 'Individuelle Planung und maßgeschneidertes Angebot',
+    description: 'Detaillierte Anlagenplanung mit 3D-Simulation und verbindlichem Festpreis-Angebot.',
+    duration: '3-5 Tage',
   },
   {
     number: '03',
     icon: Wrench,
     title: 'Installation',
-    description: 'Professionelle Installation durch unser Expertenteam',
+    description: 'Professionelle Montage durch unser eigenes, zertifiziertes Installationsteam.',
+    duration: '1-3 Tage',
   },
   {
     number: '04',
     icon: Headphones,
     title: 'Betreuung',
-    description: 'Langfristige Wartung und Support für Ihre Anlage',
+    description: 'Lebenslanger Support, Monitoring und optionaler Wartungsvertrag.',
+    duration: 'Dauerhaft',
   },
-];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const stepVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' as const },
-  },
-};
+]
 
 export default function Process() {
   return (
-    <section className="bg-gray-50 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="prozess" className="py-20 lg:py-28 bg-white">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16 lg:mb-20"
         >
-          <span className="inline-block text-celaris-green text-sm font-semibold uppercase tracking-[0.2em] mb-4">
+          <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-celaris-green">
             So funktioniert&apos;s
           </span>
-          <h2 className="font-display text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="mt-3 font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-tight text-dark-900">
             In 4 Schritten zur Solaranlage
           </h2>
+          <p className="mt-4 max-w-xl mx-auto text-light-500 text-[16px]">
+            Vom ersten Gespräch bis zur Einspeisung — transparent, planbar und stressfrei.
+          </p>
         </motion.div>
 
-        {/* Steps */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="relative"
-        >
-          {/* Connecting line – desktop (horizontal) */}
-          <div className="hidden lg:block absolute top-[60px] left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-celaris-green to-celaris-cyan opacity-30" />
+        {/* Steps — horizontal timeline on desktop, vertical on mobile */}
+        <div className="relative">
+          {/* Desktop connecting line */}
+          <div className="hidden lg:block absolute top-[52px] left-[calc(12.5%+30px)] right-[calc(12.5%+30px)] h-[2px]">
+            <div className="h-full bg-gradient-to-r from-celaris-green via-celaris-cyan to-celaris-green opacity-20 rounded-full" />
+          </div>
 
-          {/* Connecting line – mobile (vertical) */}
-          <div className="lg:hidden absolute top-0 bottom-0 left-[29px] w-0.5 bg-gradient-to-b from-celaris-green to-celaris-cyan opacity-30" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-8">
-            {steps.map((step) => (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
+            {steps.map((step, i) => (
               <motion.div
                 key={step.number}
-                variants={stepVariants}
-                className="relative flex lg:flex-col items-start lg:items-center text-left lg:text-center gap-6 lg:gap-0"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                className="relative"
               >
-                {/* Numbered circle with gradient border */}
-                <div className="relative z-10 flex-shrink-0">
-                  <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-gray-50 p-[2px]">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-celaris-green to-celaris-cyan" />
-                    <div className="relative flex h-full w-full items-center justify-center rounded-full bg-gray-50">
-                      <span className="font-display text-lg font-bold bg-gradient-to-r from-celaris-green to-celaris-cyan bg-clip-text text-transparent">
+                {/* Mobile vertical connector */}
+                {i < steps.length - 1 && (
+                  <div className="lg:hidden absolute top-[104px] left-[30px] w-[2px] h-[calc(100%-56px)] bg-gradient-to-b from-celaris-green/20 to-transparent" />
+                )}
+
+                <div className="flex lg:flex-col items-start lg:items-center gap-5 lg:gap-0 lg:text-center">
+                  {/* Number circle */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <div className="relative flex h-[60px] w-[60px] items-center justify-center">
+                      {/* Gradient ring */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-celaris-green to-celaris-cyan p-[2px]">
+                        <div className="h-full w-full rounded-full bg-white" />
+                      </div>
+                      <span className="relative font-display text-lg font-bold gradient-text">
                         {step.number}
                       </span>
                     </div>
+                    {/* Completed checkmark */}
+                    {i === 0 && (
+                      <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-celaris-green flex items-center justify-center">
+                        <CheckCircle className="h-3 w-3 text-white" />
+                      </div>
+                    )}
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="lg:mt-8">
-                  <div className="mb-4 flex lg:justify-center">
-                    <step.icon className="h-6 w-6 text-celaris-green" />
+                  {/* Content */}
+                  <div className="lg:mt-6 flex-1">
+                    <div className="flex lg:justify-center items-center gap-2 mb-2">
+                      <step.icon className="h-4 w-4 text-celaris-green" />
+                      <span className="text-[11px] font-medium text-celaris-green bg-celaris-green/[0.06] px-2 py-0.5 rounded-full">
+                        {step.duration}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-dark-900 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-light-500 leading-relaxed max-w-[260px] lg:mx-auto">
+                      {step.description}
+                    </p>
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-gray-900 mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed max-w-[240px] lg:mx-auto">
-                    {step.description}
-                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
-  );
+  )
 }
