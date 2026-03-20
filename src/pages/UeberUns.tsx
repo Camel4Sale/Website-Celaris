@@ -27,7 +27,11 @@ const values = [
 const milestones = [
   { year: '2009', title: 'Gründung', text: 'Start als Familienunternehmen in Karlsruhe' },
   { year: '2014', title: '100. Installation', text: 'Meilenstein in der Region erreicht' },
-  { year: '2019', title: 'Speicher-Spezialist', text: 'Erweiterung um Speicherlösungen & E-Mobilität' },
+  {
+    year: '2019',
+    title: 'Speicher-Spezialist',
+    text: 'Erweiterung um Speicherlösungen & E-Mobilität',
+  },
   { year: '2024', title: '500+ Projekte', text: 'Führender PV-Fachbetrieb in der Region' },
 ]
 
@@ -35,46 +39,76 @@ export default function UeberUns() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-28 pb-16 lg:pt-36 lg:pb-20 bg-ink relative overflow-hidden">
-        <div className="absolute inset-0 topo-pattern" />
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-2xl">
-            <span className="tag tag-accent mb-6">Über Uns</span>
-            <h1 className="font-display text-[clamp(2.2rem,5vw,3.5rem)] font-extrabold text-white tracking-[-0.03em] leading-[1.05]">
-              Ihr <span className="text-accent">Solar-Partner</span> in Karlsruhe.
+      <section className="pt-28 pb-16 lg:pt-36 lg:pb-20 bg-[#1A1A1A] relative overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+            className="max-w-2xl"
+          >
+            <span className="font-label text-secondary-container font-bold uppercase tracking-widest text-sm mb-4 block">
+              Über Uns
+            </span>
+            <h1 className="font-headline text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.05]">
+              Ihr <span className="text-secondary-container">Solar-Partner</span> in Karlsruhe.
             </h1>
-            <p className="mt-4 text-white/40 text-[17px] leading-relaxed max-w-lg">
-              Celaris steht für Qualität, Zuverlässigkeit und Innovation. Seit über einem Jahrzehnt begleiten wir Hausbesitzer auf dem Weg zur Energieunabhängigkeit.
+            <p className="mt-4 text-white/60 text-lg leading-relaxed max-w-lg">
+              Celaris steht für Qualität, Zuverlässigkeit und Innovation. Seit über einem Jahrzehnt
+              begleiten wir Hausbesitzer auf dem Weg zur Energieunabhängigkeit.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Story + Timeline */}
-      <section className="py-20 lg:py-28 bg-cream">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <section className="py-20 lg:py-28 bg-surface">
+        <div className="max-w-[1440px] mx-auto px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-20">
-            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <span className="section-number">01</span>
-              <h2 className="font-display text-2xl lg:text-3xl font-extrabold text-ink mb-5">Unsere Geschichte</h2>
-              <div className="space-y-4 text-stone-500 text-[15px] leading-[1.75]">
-                <p>Celaris wurde mit einer einfachen Vision gegründet: Solarenergie für jeden Haushalt in Karlsruhe und Umgebung zugänglich und wirtschaftlich zu machen.</p>
-                <p>Was als kleines Familienunternehmen begann, ist heute ein etablierter Fachbetrieb mit einem Team aus erfahrenen Experten. Über 500 Solaranlagen wurden erfolgreich installiert — stets mit höchsten Qualitätsstandards.</p>
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+            >
+              <h2 className="font-headline text-2xl lg:text-3xl font-extrabold text-on-surface mb-5">
+                Unsere Geschichte
+              </h2>
+              <div className="space-y-4 text-on-surface-variant text-lg leading-relaxed">
+                <p>
+                  Celaris wurde mit einer einfachen Vision gegründet: Solarenergie für jeden
+                  Haushalt in Karlsruhe und Umgebung zugänglich und wirtschaftlich zu machen.
+                </p>
+                <p>
+                  Was als kleines Familienunternehmen begann, ist heute ein etablierter Fachbetrieb
+                  mit einem Team aus erfahrenen Experten. Über 500 Solaranlagen wurden erfolgreich
+                  installiert — stets mit höchsten Qualitätsstandards.
+                </p>
               </div>
 
               <div className="mt-8 grid grid-cols-2 gap-3">
-                {['Meisterbetrieb', 'TÜV-zertifiziert', 'Innungsmitglied', 'Qualitätsgarantie'].map((badge) => (
-                  <div key={badge} className="flex items-center gap-2 rounded-xl bg-white/80 border border-stone-200 px-3.5 py-2.5">
-                    <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                    <span className="text-[13px] font-medium text-ink">{badge}</span>
-                  </div>
-                ))}
+                {['Meisterbetrieb', 'TÜV-zertifiziert', 'Innungsmitglied', 'Qualitätsgarantie'].map(
+                  (badge) => (
+                    <div
+                      key={badge}
+                      className="flex items-center gap-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20 px-3.5 py-2.5"
+                    >
+                      <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                      <span className="text-sm font-medium text-on-surface">{badge}</span>
+                    </div>
+                  )
+                )}
               </div>
             </motion.div>
 
             {/* Timeline */}
-            <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}>
-              <div className="relative pl-8 border-l-2 border-stone-200 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
+            >
+              <div className="relative pl-8 border-l-2 border-outline-variant/30 space-y-8">
                 {milestones.map((m, i) => (
                   <motion.div
                     key={m.year}
@@ -84,10 +118,12 @@ export default function UeberUns() {
                     transition={{ duration: 0.4, delay: i * 0.1 }}
                     className="relative"
                   >
-                    <div className="absolute -left-[calc(2rem+5px)] top-1 h-3 w-3 rounded-full border-2 border-accent bg-cream" />
-                    <span className="text-[12px] font-bold text-accent">{m.year}</span>
-                    <h3 className="font-display text-base font-semibold text-ink mt-1">{m.title}</h3>
-                    <p className="text-sm text-stone-500 mt-0.5">{m.text}</p>
+                    <div className="absolute -left-[calc(2rem+5px)] top-1 h-3 w-3 rounded-full border-2 border-secondary bg-surface" />
+                    <span className="text-sm font-bold text-secondary">{m.year}</span>
+                    <h3 className="font-headline text-base font-semibold text-on-surface mt-1">
+                      {m.title}
+                    </h3>
+                    <p className="text-sm text-on-surface-variant mt-0.5">{m.text}</p>
                   </motion.div>
                 ))}
               </div>
@@ -95,7 +131,7 @@ export default function UeberUns() {
           </div>
 
           {/* Values */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -103,13 +139,15 @@ export default function UeberUns() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group p-6 rounded-2xl border border-stone-200 bg-white/60 hover:shadow-lg hover:border-accent/20 transition-all duration-500"
+                className="group p-8 rounded-xl bg-surface-container-lowest editorial-shadow hover:-translate-y-1 transition-transform duration-300"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-accent/[0.08] mb-4">
-                  <item.icon className="w-5 h-5 text-accent" />
+                <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors duration-300">
+                  <item.icon className="w-6 h-6 text-on-surface" />
                 </div>
-                <h3 className="font-display font-bold text-base text-ink mb-2">{item.title}</h3>
-                <p className="text-[13px] text-stone-500 leading-relaxed">{item.text}</p>
+                <h3 className="font-headline font-bold text-lg text-on-surface mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-on-surface-variant leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
           </div>

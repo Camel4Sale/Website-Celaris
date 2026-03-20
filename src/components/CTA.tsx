@@ -1,69 +1,34 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Phone } from 'lucide-react'
-import { Link } from 'react-router-dom'
 
 export default function CTA() {
   return (
-    <section className="relative py-24 lg:py-36 bg-cream overflow-hidden">
-      {/* Decorative accent line top */}
-      <div className="absolute top-0 inset-x-0 glow-line" />
-
-      {/* Large decorative text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <span className="font-display text-[clamp(8rem,20vw,16rem)] font-extrabold text-stone-100 tracking-[-0.05em]">
-          SOLAR
-        </span>
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10 text-center">
+    <section className="py-24">
+      <div className="max-w-[1440px] mx-auto px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+          className="bg-secondary-container rounded-[2rem] p-12 md:p-24 text-center overflow-hidden relative"
         >
-          <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] font-extrabold tracking-[-0.04em] leading-[1.05] text-ink">
-            Bereit für Ihre
-            <br />
-            <span className="text-accent">Energieunabhängigkeit?</span>
-          </h2>
-          <p className="mt-5 text-stone-500 text-[17px] max-w-md mx-auto leading-relaxed">
-            Kostenloses Angebot in 48h. Persönliche Beratung, Festpreisgarantie und regionale Betreuung.
-          </p>
-        </motion.div>
+          <div className="relative z-10">
+            <h2 className="font-headline text-4xl md:text-7xl font-extrabold text-on-secondary-fixed mb-8">
+              Bereit für Solar?
+            </h2>
+            <p className="text-xl md:text-2xl text-on-secondary-fixed/70 font-medium mb-12 max-w-2xl mx-auto">
+              Sichern Sie sich jetzt Ihr kostenloses Festpreisangebot. Unverbindlich und schnell.
+            </p>
+            <a
+              href="/#kontakt"
+              className="inline-block bg-on-secondary-fixed text-secondary-container px-12 py-6 rounded-full font-headline font-bold text-xl hover:bg-on-secondary-fixed/90 transition-all duration-300"
+            >
+              Jetzt Angebot anfragen
+            </a>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Link
-            to="/kontakt"
-            className="group inline-flex items-center gap-3 rounded-full bg-ink px-8 py-4 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-ink-soft active:scale-[0.97]"
-          >
-            Kostenloses Angebot
-            <ArrowRight className="h-4 w-4 text-accent transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
-          </Link>
-          <a
-            href="tel:+49721XXXXXXX"
-            className="inline-flex items-center gap-2.5 rounded-full border border-stone-200 px-7 py-4 text-[15px] font-medium text-ink transition-all duration-300 hover:border-stone-300 hover:bg-white/60"
-          >
-            <Phone className="h-4 w-4" />
-            0721 / XXX XXXX
-          </a>
+          {/* Decorative element */}
+          <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-on-secondary-fixed/5 rounded-full blur-3xl" />
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-5 text-[12px] text-stone-400"
-        >
-          Kostenlos & unverbindlich · Antwort in 24h
-        </motion.p>
       </div>
     </section>
   )

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, ArrowUpRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Phone } from 'lucide-react'
 
 export default function StickyMobileCTA() {
   const [visible, setVisible] = useState(false)
@@ -20,16 +19,21 @@ export default function StickyMobileCTA() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-cream/95 backdrop-blur-2xl border-t border-stone-200"
+          className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#fbf9f4]/95 backdrop-blur-2xl border-t border-outline-variant/20"
         >
           <div className="flex items-center gap-3 px-4 py-3">
-            <a href="tel:+49721XXXXXXX" className="w-11 h-11 rounded-xl border border-stone-200 flex items-center justify-center text-ink hover:text-accent hover:border-accent transition-colors">
-              <Phone className="h-4 w-4" />
+            <a
+              href="tel:+497211234567"
+              className="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface hover:text-secondary hover:border-secondary transition-colors"
+            >
+              <Phone className="h-5 w-5" />
             </a>
-            <Link to="/kontakt" className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-ink py-3 text-[14px] font-semibold text-white active:scale-[0.98] transition-transform">
-              Kostenloses Angebot
-              <ArrowUpRight className="h-3.5 w-3.5 text-accent" />
-            </Link>
+            <a
+              href="/#kontakt"
+              className="flex-1 flex items-center justify-center gap-2 rounded-full bg-secondary-container text-on-secondary-fixed py-3.5 font-headline font-bold text-sm uppercase tracking-wider active:scale-[0.98] transition-transform"
+            >
+              Jetzt Angebot anfragen
+            </a>
           </div>
         </motion.div>
       )}

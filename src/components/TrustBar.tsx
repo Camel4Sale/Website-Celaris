@@ -1,37 +1,35 @@
 import { motion } from 'framer-motion'
 
-const partners = ['SolarEdge', 'Enphase', 'Q CELLS', 'BYD', 'Fronius', 'SMA', 'Meyer Burger', 'Huawei']
+const partners = ['SolarEdge', 'Enphase', 'Q CELLS', 'BYD', 'Huawei']
 
 export default function TrustBar() {
   return (
-    <section className="py-10 bg-cream border-b border-stone-100">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <motion.div
+    <section className="bg-white py-12 border-b border-outline-variant/10">
+      <div className="max-w-[1440px] mx-auto px-8">
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10"
+          className="text-center font-label text-xs uppercase tracking-widest text-on-surface-variant/60 mb-8"
         >
-          <p className="text-[10px] uppercase tracking-[0.2em] text-stone-400 font-semibold shrink-0 whitespace-nowrap">
-            Premium-Partner
-          </p>
-          <div className="w-full overflow-hidden">
-            <motion.div
-              animate={{ x: ['0%', '-50%'] }}
-              transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
-              className="flex items-center gap-14 w-max"
+          Unsere Technologie-Partner
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+        >
+          {partners.map((partner) => (
+            <span
+              key={partner}
+              className="font-headline font-black text-2xl tracking-tighter text-on-surface"
             >
-              {[...partners, ...partners].map((p, i) => (
-                <span
-                  key={`${p}-${i}`}
-                  className="font-display text-sm font-semibold text-stone-300 whitespace-nowrap select-none tracking-wide"
-                >
-                  {p}
-                </span>
-              ))}
-            </motion.div>
-          </div>
+              {partner}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>

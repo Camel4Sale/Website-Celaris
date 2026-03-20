@@ -1,63 +1,109 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, ArrowUpRight } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-white">
-      <div className="glow-line" />
-      <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-10 lg:py-16">
-        <div className="grid grid-cols-2 gap-10 lg:grid-cols-5 lg:gap-8">
-          {/* Brand */}
-          <div className="col-span-2">
-            <Link to="/" className="inline-block mb-5">
-              <img src="/images/celaris-logo.png" alt="Celaris" className="h-7 w-auto" />
-            </Link>
-            <p className="max-w-xs text-[13px] leading-relaxed text-white/40 mb-5">
-              Ihr Photovoltaik-Experte in Karlsruhe. Maßgeschneiderte Solaranlagen mit Festpreisgarantie.
-            </p>
-            <div className="space-y-2">
-              <a href="tel:+49721XXXXXXX" className="flex items-center gap-2 text-[12px] text-white/30 hover:text-accent transition-colors"><Phone className="h-3 w-3" /> 0721 / XXX XXXX</a>
-              <a href="mailto:info@celaris-solar.de" className="flex items-center gap-2 text-[12px] text-white/30 hover:text-accent transition-colors"><Mail className="h-3 w-3" /> info@celaris-solar.de</a>
-              <span className="flex items-center gap-2 text-[12px] text-white/30"><MapPin className="h-3 w-3" /> 76131 Karlsruhe</span>
-            </div>
-          </div>
-
-          {/* Nav */}
-          <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/25 mb-4">Navigation</h4>
-            <ul className="space-y-2.5">
-              {[['Startseite', '/'], ['Leistungen', '/leistungen'], ['Über Uns', '/ueber-uns'], ['Kontakt', '/kontakt']].map(([l, t]) => (
-                <li key={t}><Link to={t} className="text-[13px] text-white/40 hover:text-accent transition-colors">{l}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/25 mb-4">Leistungen</h4>
-            <ul className="space-y-2.5">
-              {['Photovoltaik', 'Stromspeicher', 'Wallbox', 'Wartung'].map((s) => (
-                <li key={s}><Link to="/leistungen" className="text-[13px] text-white/40 hover:text-accent transition-colors">{s}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* CTA */}
-          <div>
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/25 mb-4">Jetzt starten</h4>
-            <Link to="/kontakt" className="inline-flex items-center gap-1.5 rounded-lg bg-accent/10 border border-accent/15 px-4 py-2.5 text-[12px] font-semibold text-accent hover:bg-accent/20 transition-all">
-              Angebot <ArrowUpRight className="h-3 w-3" />
-            </Link>
-            <p className="mt-3 text-[10px] text-white/20 leading-relaxed">Kostenlos & unverbindlich.</p>
-          </div>
+    <footer className="bg-[#1b1c19] text-[#fbf9f4]/70 font-body leading-relaxed pt-24 pb-12">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 max-w-[1440px] mx-auto">
+        {/* Brand */}
+        <div className="md:col-span-1">
+          <Link to="/" className="flex items-center gap-2 mb-6">
+            <img src="/images/celaris-logo.png" alt="Celaris" className="h-7 w-auto brightness-200" />
+            <span className="text-2xl font-black text-[#fbf9f4] font-headline">Celaris Solar</span>
+          </Link>
+          <p className="mb-6">
+            Ihr Partner für intelligente Energielösungen in Süddeutschland. Handgefertigte
+            Planung für maximale Effizienz.
+          </p>
         </div>
 
-        <div className="mt-12 border-t border-white/[0.05] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[10px] text-white/20">&copy; {new Date().getFullYear()} Celaris Solar GmbH</p>
-          <div className="flex gap-5">
-            <Link to="/impressum" className="text-[10px] text-white/20 hover:text-accent transition-colors">Impressum</Link>
-            <Link to="/datenschutz" className="text-[10px] text-white/20 hover:text-accent transition-colors">Datenschutz</Link>
-          </div>
+        {/* Navigation */}
+        <div>
+          <h4 className="text-[#fbf9f4] font-bold mb-6 uppercase text-sm tracking-widest">
+            Navigation
+          </h4>
+          <ul className="space-y-4">
+            {[
+              { label: 'Produkte', href: '/#produkte' },
+              { label: 'Über uns', href: '/ueber-uns' },
+              { label: 'Prozess', href: '/#prozess' },
+              { label: 'Kontakt', href: '/#kontakt' },
+            ].map((item) => (
+              <li key={item.label}>
+                <Link
+                  to={item.href}
+                  className="text-[#fbf9f4]/60 hover:text-[#fbf9f4] hover:translate-x-1 transition-all duration-300 inline-block"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Legal */}
+        <div>
+          <h4 className="text-[#fbf9f4] font-bold mb-6 uppercase text-sm tracking-widest">
+            Rechtliches
+          </h4>
+          <ul className="space-y-4">
+            <li>
+              <Link
+                to="/impressum"
+                className="text-[#fbf9f4]/60 hover:text-[#fbf9f4] hover:translate-x-1 transition-all duration-300 inline-block"
+              >
+                Impressum
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/datenschutz"
+                className="text-[#fbf9f4]/60 hover:text-[#fbf9f4] hover:translate-x-1 transition-all duration-300 inline-block"
+              >
+                Datenschutz
+              </Link>
+            </li>
+            <li>
+              <span className="text-[#fbf9f4]/60 inline-block">Karlsruhe, Deutschland</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="text-[#fbf9f4] font-bold mb-6 uppercase text-sm tracking-widest">
+            Kontakt
+          </h4>
+          <ul className="space-y-4">
+            <li>
+              <a
+                className="text-[#fbf9f4]/60 hover:text-[#fbf9f4] transition-colors"
+                href="mailto:kontakt@celaris.de"
+              >
+                kontakt@celaris.de
+              </a>
+            </li>
+            <li>
+              <a
+                className="text-[#fbf9f4]/60 hover:text-[#fbf9f4] transition-colors"
+                href="tel:+497211234567"
+              >
+                +49 721 1234567
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="max-w-[1440px] mx-auto px-8 mt-24 pt-8 border-t border-white/5 text-xs tracking-widest flex flex-col md:flex-row justify-between items-center gap-4 text-[#fbf9f4]/40">
+        <div>&copy; {new Date().getFullYear()} Celaris Solar. Alle Rechte vorbehalten.</div>
+        <div className="flex gap-8">
+          <a className="hover:text-[#fbf9f4] transition-colors" href="#">
+            Cookie Einstellungen
+          </a>
+          <a className="hover:text-[#fbf9f4] transition-colors" href="#">
+            AGB
+          </a>
         </div>
       </div>
     </footer>

@@ -1,155 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Brand — electric green as surgical accent */
-  --color-accent: #00E676;
-  --color-accent-dim: #00C853;
-  --color-accent-muted: rgba(0, 230, 118, 0.08);
-  --color-accent-glow: rgba(0, 230, 118, 0.15);
+  /* Brand colors from Stitch design */
+  --color-background: #fbf9f4;
+  --color-surface: #fbf9f4;
+  --color-surface-container: #f0eee9;
+  --color-surface-container-low: #f5f3ee;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #eae8e3;
+  --color-surface-container-highest: #e4e2dd;
+  --color-surface-variant: #e4e2dd;
 
-  /* Warm stone palette — NOT cold white */
-  --color-cream: #F5F0EB;
-  --color-cream-dark: #EDE7E0;
-  --color-stone-100: #E8E2DB;
-  --color-stone-200: #D4CCC3;
-  --color-stone-300: #B8AFA5;
-  --color-stone-400: #9A9088;
-  --color-stone-500: #7D746C;
-  --color-stone-600: #5E564F;
+  --color-on-surface: #1b1c19;
+  --color-on-surface-variant: #3c4b35;
+  --color-on-background: #1b1c19;
 
-  /* Charcoal depths */
-  --color-ink: #121212;
-  --color-ink-light: #1a1a1a;
-  --color-ink-soft: #242424;
-  --color-ink-muted: #333333;
+  --color-primary: #5f5e5e;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #dfdddc;
+
+  --color-secondary: #106e00;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #38fe13;
+  --color-on-secondary-container: #107100;
+  --color-on-secondary-fixed: #022100;
+  --color-on-secondary-fixed-variant: #095300;
+
+  --color-tertiary: #1b6d24;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #9ef197;
+  --color-on-tertiary-container: #1f7026;
+
+  --color-outline: #6b7c63;
+  --color-outline-variant: #baccb0;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+
+  --color-inverse-surface: #30312e;
+  --color-inverse-on-surface: #f2f1ec;
+
+  --color-dark: #1A1A1A;
+  --color-cream: #fbf9f4;
 
   /* Typography */
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-ink);
-  background: var(--color-cream);
+  color: var(--color-on-surface);
+  background: var(--color-background);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--color-accent-glow);
-  color: var(--color-ink);
+  background: var(--color-secondary-container);
+  color: var(--color-on-secondary-fixed);
 }
 
-/* === Typography utilities === */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #69F0AE 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Editorial shadow utility */
+.editorial-shadow {
+  box-shadow: 0px 20px 40px rgba(27, 28, 25, 0.06);
 }
 
-/* === Atmospheric textures === */
-.topo-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 C60 25, 80 30, 90 50 C80 70, 60 75, 50 90 C40 75, 20 70, 10 50 C20 30, 40 25, 50 10Z' fill='none' stroke='%23ffffff' stroke-width='0.3' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+/* Hide scrollbar utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.dot-grid-light {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* === Effects === */
-.glow-line {
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-  height: 1px;
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* Grain overlay */
-.grain::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--color-secondary-container);
   border-radius: 10px;
 }
 
 /* Focus */
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-secondary-container);
   outline-offset: 3px;
-}
-
-/* Section number — editorial decorative element */
-.section-number {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(6rem, 12vw, 10rem);
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(0, 230, 118, 0.12);
-  position: absolute;
-  user-select: none;
-  pointer-events: none;
-}
-
-/* Horizontal rule — editorial style */
-.hr-editorial {
-  border: none;
-  height: 1px;
-  background: var(--color-stone-200);
-}
-
-/* Tag / pill component */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.tag-accent {
-  background: var(--color-accent-muted);
-  color: var(--color-accent-dim);
-  border: 1px solid rgba(0, 230, 118, 0.15);
-}
-
-.tag-ink {
-  background: var(--color-ink);
-  color: rgba(255,255,255,0.8);
 }
